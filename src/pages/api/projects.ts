@@ -79,7 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
       image: imageUrl || (formData.get('image_url') as string) || '',
       content_en: (formData.get('content_en') as string) || '',
       content_id: (formData.get('content_id') as string) || '',
-      image_ext: (imageFile?.name.split('.').pop() || 'png'),
+      image_ext: (imageFile && imageFile.name ? imageFile.name.split('.').pop() || 'png' : 'png'),
     };
 
     const proj = await createProject(data);
@@ -144,6 +144,9 @@ export const PUT: APIRoute = async ({ request, url }) => {
 
     if (imageUrl) {
       data.image = imageUrl;
+      if (imageFile && imageFile.name) {
+        data.image_ext = imageFile.name.split('.').pop() || 'png';
+      }
     }
 
     const content_en = formData.get('content_en');

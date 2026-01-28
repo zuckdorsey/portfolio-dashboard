@@ -87,7 +87,7 @@ const POST = async ({ request }) => {
       image: imageUrl || formData.get("image_url") || "",
       content_en: formData.get("content_en") || "",
       content_id: formData.get("content_id") || "",
-      image_ext: imageFile?.name.split(".").pop() || "png"
+      image_ext: imageFile && imageFile.name ? imageFile.name.split(".").pop() || "png" : "png"
     };
     const proj = await createProject(data);
     return new Response(JSON.stringify(proj), {
@@ -140,6 +140,9 @@ const PUT = async ({ request, url }) => {
     if (type) data.type = JSON.parse(type);
     if (imageUrl) {
       data.image = imageUrl;
+      if (imageFile && imageFile.name) {
+        data.image_ext = imageFile.name.split(".").pop() || "png";
+      }
     }
     const content_en = formData.get("content_en");
     if (content_en !== null) data.content_en = content_en;
