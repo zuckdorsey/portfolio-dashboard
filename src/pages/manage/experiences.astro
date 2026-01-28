@@ -1,0 +1,509 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getExperiences } from "../../lib/db";
+import FormModal from "../../components/FormModal.astro";
+
+const experiences = await getExperiences();
+---
+
+<Layout title="Kelola Pengalaman">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Sidebar -->
+    <div
+      class="fixed left-0 top-0 w-64 h-screen bg-white border-r border-gray-200 p-6 shadow-sm overflow-y-auto"
+    >
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Portfolio</h1>
+        <p class="text-sm text-gray-500">Content Manager</p>
+      </div>
+
+      <nav class="space-y-2">
+        <a
+          href="/dashboard"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-3m0 0l7-4 7 4M5 9v10a1 1 0 001 1h12a1 1 0 001-1V9m-9 11l4-4m0 0l4 4m-4-4v4"
+            ></path>
+          </svg>
+          Dashboard
+        </a>
+        <a
+          href="/content"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            ></path>
+          </svg>
+          Konten
+        </a>
+        <a
+          href="/media"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          Media
+        </a>
+        <a
+          href="/manage/projects"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5A2.25 2.25 0 008.25 22.5h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-4 0v3m4-3v3m0 6H6m12 0H6"
+            ></path>
+          </svg>
+          Proyek
+        </a>
+        <a
+          href="/manage/experiences"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+            ></path>
+          </svg>
+          Pengalaman
+        </a>
+        <a
+          href="/manage/education"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17.25c0 5.4 3.578 10.063 8.667 11.386.537.093 1.093.149 1.663.149.57 0 1.126-.056 1.663-.149 5.089-1.323 8.667-5.986 8.667-11.386 0-6.252-4.5-10.997-10-10.997z"
+            ></path>
+          </svg>
+          Pendidikan
+        </a>
+        <a
+          href="/manage/certifications"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+            ></path>
+          </svg>
+          Sertifikasi
+        </a>
+        <a
+          href="/manage/skills"
+          class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+        >
+          <svg
+            class="w-5 h-5 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          Skills
+        </a>
+      </nav>
+
+      <div class="absolute bottom-6 left-6 right-6">
+        <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-100">
+          <img
+            src="https://ui-avatars.com/api/?name=Admin+User"
+            alt="Avatar"
+            class="w-10 h-10 rounded-full"
+          />
+          <div class="flex-1">
+            <p class="text-sm font-medium text-gray-900">Admin</p>
+            <p class="text-xs text-gray-500">admin@portfolio.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64">
+      <!-- Top Bar -->
+      <div
+        class="bg-white border-b border-gray-200 px-8 py-4 sticky top-0 z-10 flex items-center justify-between"
+      >
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900">Kelola Pengalaman</h2>
+          <p class="text-sm text-gray-500 mt-1">
+            Atur dan kelola pengalaman kerja Anda.
+          </p>
+        </div>
+        <button
+          onclick="openModal('experienceModal')"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+        >
+          + Tambah Pengalaman
+        </button>
+      </div>
+
+      <!-- Alert Messages -->
+      <div
+        id="successAlert"
+        class="hidden mx-8 mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
+      >
+        <p id="successMessage"></p>
+      </div>
+      <div
+        id="errorAlert"
+        class="hidden mx-8 mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800"
+      >
+        <p id="errorMessage"></p>
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-8">
+        {
+          experiences.length > 0 ? (
+            <div class="space-y-4">
+              {experiences.map((exp) => (
+                <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-gray-900">
+                        {exp.position}
+                      </h3>
+                      <p class="text-sm text-gray-600 mt-1">
+                        <a
+                          href={exp.company_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-blue-600 hover:underline"
+                        >
+                          {exp.company}
+                        </a>
+                      </p>
+                      <p class="text-sm text-gray-500 mt-1">
+                        {exp.start_date} - {exp.end_date || "Sekarang"}
+                      </p>
+                      <div class="mt-3 flex flex-wrap gap-2">
+                        {exp.technologies &&
+                          Array.isArray(exp.technologies) &&
+                          exp.technologies.map((tech: string) => (
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">
+                              {tech}
+                            </span>
+                          ))}
+                      </div>
+                    </div>
+                    <div class="flex gap-2 ml-4">
+                      <button
+                        onclick={`editExperience(${JSON.stringify(exp)})`}
+                        class="p-2 text-gray-600 hover:bg-gray-100 rounded"
+                        title="Edit"
+                      >
+                        <svg
+                          class="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        onclick={`deleteExperience(${exp.id})`}
+                        class="p-2 text-red-600 hover:bg-red-50 rounded"
+                        title="Hapus"
+                      >
+                        <svg
+                          class="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-12">
+              <p class="text-gray-500 mb-4">
+                Belum ada pengalaman yang ditambahkan.
+              </p>
+              <button
+                onclick="openModal('experienceModal')"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+              >
+                Tambah Pengalaman Pertama
+              </button>
+            </div>
+          )
+        }
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-sm text-gray-500">
+          <p>© 2026 Portfolio Dashboard. Semua hak dilindungi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Modal -->
+  <FormModal
+    id="experienceModal"
+    title="Kelola Pengalaman"
+    fields={[
+      {
+        name: "company",
+        label: "Nama Perusahaan",
+        type: "text",
+        required: true,
+      },
+      {
+        name: "company_url",
+        label: "URL Perusahaan",
+        type: "url",
+        placeholder: "https://...",
+      },
+      { name: "position", label: "Posisi", type: "text", required: true },
+      {
+        name: "type",
+        label: "Tipe Pekerjaan",
+        type: "select",
+        required: true,
+        options: [
+          { value: "full-time", label: "Full Time" },
+          { value: "part-time", label: "Part Time" },
+          { value: "freelance", label: "Freelance" },
+          { value: "internship", label: "Internship" },
+        ],
+      },
+      {
+        name: "start_date",
+        label: "Tanggal Mulai",
+        type: "date",
+        required: true,
+      },
+      { name: "end_date", label: "Tanggal Selesai", type: "date" },
+      {
+        name: "technologies",
+        label: "Teknologi (pisahkan dengan koma)",
+        type: "textarea",
+        placeholder: "React, Node.js, PostgreSQL",
+      },
+    ]}
+    submitText="Simpan Pengalaman"
+    onSubmit="submitExperienceForm"
+  />
+</Layout>
+
+<script>
+  function showAlert(type: "success" | "error", message: string) {
+    const successAlert = document.getElementById("successAlert");
+    const errorAlert = document.getElementById("errorAlert");
+    const successMsg = document.getElementById("successMessage");
+    const errorMsg = document.getElementById("errorMessage");
+
+    if (type === "success") {
+      successMsg!.textContent = message;
+      successAlert!.classList.remove("hidden");
+      errorAlert!.classList.add("hidden");
+      setTimeout(() => successAlert!.classList.add("hidden"), 3000);
+    } else {
+      errorMsg!.textContent = message;
+      errorAlert!.classList.remove("hidden");
+      successAlert!.classList.add("hidden");
+      setTimeout(() => errorAlert!.classList.add("hidden"), 3000);
+    }
+  }
+
+  window.editExperience = (exp: any) => {
+    const form = document.getElementById(
+      "experienceModal-form",
+    ) as HTMLFormElement;
+    (form.elements.namedItem("company") as HTMLInputElement).value =
+      exp.company;
+    (form.elements.namedItem("company_url") as HTMLInputElement).value =
+      exp.company_url || "";
+    (form.elements.namedItem("position") as HTMLInputElement).value =
+      exp.position;
+    (form.elements.namedItem("type") as HTMLInputElement).value =
+      exp.type || "";
+    (form.elements.namedItem("start_date") as HTMLInputElement).value =
+      exp.start_date;
+    (form.elements.namedItem("end_date") as HTMLInputElement).value =
+      exp.end_date || "";
+    (form.elements.namedItem("technologies") as HTMLInputElement).value =
+      Array.isArray(exp.technologies) ? exp.technologies.join(", ") : "";
+    (form.elements.namedItem("id") as HTMLInputElement).value = exp.id;
+
+    const modal = document.querySelector(
+      "#experienceModal .modal-title",
+    ) as HTMLElement;
+    modal.textContent = `Edit ${exp.position}`;
+
+    window.openModal("experienceModal");
+  };
+
+  window.deleteExperience = async (id: number) => {
+    if (!confirm("Yakin ingin menghapus pengalaman ini?")) return;
+
+    try {
+      const response = await fetch(`/api/experiences?id=${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        showAlert("success", "Pengalaman berhasil dihapus!");
+        setTimeout(() => location.reload(), 1000);
+      } else {
+        showAlert("error", "Gagal menghapus pengalaman");
+      }
+    } catch (error) {
+      showAlert("error", "Error: " + (error as Error).message);
+    }
+  };
+
+  window.submitExperienceForm = async (modalId: string) => {
+    const form = document.getElementById(`${modalId}-form`) as HTMLFormElement;
+    const formData = new FormData(form);
+    const id = formData.get("id");
+    const data = {
+      company: formData.get("company"),
+      company_url: formData.get("company_url") || null,
+      position: formData.get("position"),
+      type: formData.get("type") || null,
+      start_date: formData.get("start_date"),
+      end_date: formData.get("end_date") || null,
+      technologies:
+        (formData.get("technologies") as string)
+          ?.split(",")
+          .map((t) => t.trim())
+          .filter(Boolean) || [],
+    };
+
+    try {
+      const method = id ? "PUT" : "POST";
+      const url = id ? `/api/experiences?id=${id}` : "/api/experiences";
+
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        showAlert(
+          "success",
+          `Pengalaman ${id ? "diperbarui" : "ditambahkan"} berhasil!`,
+        );
+        window.closeModal(modalId);
+        form.reset();
+        setTimeout(() => location.reload(), 1000);
+      } else {
+        const error = await response.text();
+        showAlert("error", `Error: ${error}`);
+      }
+    } catch (error) {
+      showAlert("error", "Error: " + (error as Error).message);
+    }
+  };
+
+  const experienceModal = document.getElementById(
+    "experienceModal",
+  ) as HTMLElement;
+
+  const observer = new MutationObserver(() => {
+    if (!experienceModal.classList.contains("hidden")) {
+      const form = document.getElementById(
+        "experienceModal-form",
+      ) as HTMLFormElement;
+      const idField = form.elements.namedItem("id") as HTMLInputElement;
+      if (!idField?.value) {
+        const modal = document.querySelector(
+          "#experienceModal .modal-title",
+        ) as HTMLElement;
+        modal.textContent = "Tambah Pengalaman Baru";
+      }
+    }
+  });
+
+  observer.observe(experienceModal, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+</script>

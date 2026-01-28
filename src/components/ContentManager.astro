@@ -1,0 +1,128 @@
+---
+// Content Manager Component
+---
+
+<div class="bg-white rounded-lg border border-gray-200 shadow-sm">
+  <div class="p-6 border-b border-gray-200">
+    <h3 class="text-lg font-semibold text-gray-900">Kelola Konten</h3>
+  </div>
+
+  <div class="p-6">
+    <!-- Search and Filter -->
+    <div class="flex items-center gap-4 mb-6">
+      <div class="flex-1">
+        <input
+          type="search"
+          placeholder="Cari konten..."
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <select
+        class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option>Semua Kategori</option>
+        <option>Proyek</option>
+        <option>Blog</option>
+        <option>Skill</option>
+      </select>
+      <button
+        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+      >
+        Filter
+      </button>
+    </div>
+
+    <!-- Content Items -->
+    <div class="space-y-3">
+      <div
+        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"
+      >
+        <div class="flex-1">
+          <h4 class="font-medium text-gray-900">Web Design Portfolio</h4>
+          <p class="text-sm text-gray-500">Proyek • Diubah 2 hari lalu</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded"
+            >Aktif</span
+          >
+          <button class="p-2 hover:bg-gray-200 rounded">
+            <svg
+              class="w-4 h-4 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"
+      >
+        <div class="flex-1">
+          <h4 class="font-medium text-gray-900">Mobile App Development</h4>
+          <p class="text-sm text-gray-500">Proyek • Diubah 5 hari lalu</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="px-2 py-1 text-xs font-semibold text-yellow-700 bg-yellow-100 rounded"
+            >Draft</span
+          >
+          <button class="p-2 hover:bg-gray-200 rounded">
+            <svg
+              class="w-4 h-4 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"
+      >
+        <div class="flex-1">
+          <h4 class="font-medium text-gray-900">Panduan Lengkap CSS Grid</h4>
+          <p class="text-sm text-gray-500">Blog • Diubah 1 minggu lalu</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded"
+            >Aktif</span
+          >
+          <button class="p-2 hover:bg-gray-200 rounded">
+            <svg
+              class="w-4 h-4 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2m0 7a1 1 0 110-2 1 1 0 010 2"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

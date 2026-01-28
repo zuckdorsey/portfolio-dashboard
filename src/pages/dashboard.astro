@@ -1,0 +1,633 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import {
+  getSkills,
+  getProjects,
+  getExperiences,
+  getEducation,
+  getCertifications,
+} from "../lib/db";
+
+// Fetch data untuk stats
+const skills = await getSkills();
+const projects = await getProjects();
+const experiences = await getExperiences();
+const educations = await getEducation();
+const certifications = await getCertifications();
+
+const totalItems =
+  skills.length +
+  projects.length +
+  experiences.length +
+  educations.length +
+  certifications.length;
+---
+
+<Layout title="Dashboard">
+  <div class="min-h-screen bg-gray-50">
+    <Sidebar currentPage="dashboard" />
+
+    <!-- Main Content -->
+    <div class="ml-64">
+      <div
+        class="bg-white border-b border-gray-200 px-8 py-4 sticky top-0 z-10"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Dashboard</h2>
+            <p class="text-sm text-gray-500 mt-1">
+              Selamat datang kembali! Kelola konten portfolio Anda di sini.
+            </p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                ></path>
+              </svg>
+            </button>
+            <button
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+            >
+              + Buat Konten Baru
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+          <div
+            class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Total Items</p>
+                <p class="text-3xl font-bold text-gray-900 mt-1">
+                  {totalItems}
+                </p>
+              </div>
+              <div class="p-3 bg-blue-100 rounded-lg">
+                <svg
+                  class="w-6 h-6 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">All content items</p>
+          </div>
+
+          <div
+            class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Projects</p>
+                <p class="text-3xl font-bold text-gray-900 mt-1">
+                  {projects.length}
+                </p>
+              </div>
+              <div class="p-3 bg-green-100 rounded-lg">
+                <svg
+                  class="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/manage/projects"
+              class="text-xs text-blue-600 hover:underline mt-4 block"
+              >Manage →</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Experiences</p>
+                <p class="text-3xl font-bold text-gray-900 mt-1">
+                  {experiences.length}
+                </p>
+              </div>
+              <div class="p-3 bg-purple-100 rounded-lg">
+                <svg
+                  class="w-6 h-6 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/manage/experiences"
+              class="text-xs text-blue-600 hover:underline mt-4 block"
+              >Manage →</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Education</p>
+                <p class="text-3xl font-bold text-gray-900 mt-1">
+                  {educations.length}
+                </p>
+              </div>
+              <div class="p-3 bg-indigo-100 rounded-lg">
+                <svg
+                  class="w-6 h-6 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/manage/education"
+              class="text-xs text-blue-600 hover:underline mt-4 block"
+              >Manage →</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Skills</p>
+                <p class="text-3xl font-bold text-gray-900 mt-1">
+                  {skills.length}
+                </p>
+              </div>
+              <div class="p-3 bg-yellow-100 rounded-lg">
+                <svg
+                  class="w-6 h-6 text-yellow-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/manage/skills"
+              class="text-xs text-blue-600 hover:underline mt-4 block"
+              >Manage →</a
+            >
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Quick Actions
+            </h3>
+            <div class="space-y-3">
+              <a
+                href="/manage/projects"
+                class="flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
+              >
+                <div class="flex items-center">
+                  <div class="p-2 bg-blue-100 rounded-lg mr-3">
+                    <svg
+                      class="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm font-medium text-gray-900"
+                    >Tambah Project Baru</span
+                  >
+                </div>
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a
+                href="/manage/experiences"
+                class="flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
+              >
+                <div class="flex items-center">
+                  <div class="p-2 bg-purple-100 rounded-lg mr-3">
+                    <svg
+                      class="w-5 h-5 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm font-medium text-gray-900"
+                    >Tambah Pengalaman Baru</span
+                  >
+                </div>
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a
+                href="/manage/skills"
+                class="flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
+              >
+                <div class="flex items-center">
+                  <div class="p-2 bg-yellow-100 rounded-lg mr-3">
+                    <svg
+                      class="w-5 h-5 text-yellow-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm font-medium text-gray-900"
+                    >Tambah Skill Baru</span
+                  >
+                </div>
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Recent Activity
+            </h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="p-2 bg-green-100 rounded-lg mr-3">
+                  <svg
+                    class="w-4 h-4 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    Database Connected
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    Successfully connected to Neon PostgreSQL
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="p-2 bg-blue-100 rounded-lg mr-3">
+                  <svg
+                    class="w-4 h-4 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4v16m8-8H4"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    CRUD System Active
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    All management pages ready to use
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="p-2 bg-purple-100 rounded-lg mr-3">
+                  <svg
+                    class="w-4 h-4 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    Dashboard Ready
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    Your portfolio management system is live
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Management Links Grid -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">
+            Content Management
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a
+              href="/manage/projects"
+              class="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition group"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <div class="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200">
+                  <svg
+                    class="w-5 h-5 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5A2.25 2.25 0 008.25 22.5h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-4 0v3m4-3v3m0 6H6m12 0H6"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-2xl font-bold text-gray-900"
+                  >{projects.length}</span
+                >
+              </div>
+              <h4 class="text-sm font-semibold text-gray-900">Projects</h4>
+              <p class="text-xs text-gray-500 mt-1">
+                Manage portfolio projects
+              </p>
+            </a>
+
+            <a
+              href="/manage/experiences"
+              class="p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:shadow-md transition group"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <div
+                  class="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200"
+                >
+                  <svg
+                    class="w-5 h-5 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-2xl font-bold text-gray-900"
+                  >{experiences.length}</span
+                >
+              </div>
+              <h4 class="text-sm font-semibold text-gray-900">Experiences</h4>
+              <p class="text-xs text-gray-500 mt-1">Work experience history</p>
+            </a>
+
+            <a
+              href="/manage/education"
+              class="p-4 border-2 border-gray-200 rounded-lg hover:border-indigo-500 hover:shadow-md transition group"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <div
+                  class="p-2 bg-indigo-100 rounded-lg group-hover:bg-indigo-200"
+                >
+                  <svg
+                    class="w-5 h-5 text-indigo-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-2xl font-bold text-gray-900"
+                  >{educations.length}</span
+                >
+              </div>
+              <h4 class="text-sm font-semibold text-gray-900">Education</h4>
+              <p class="text-xs text-gray-500 mt-1">Educational background</p>
+            </a>
+
+            <a
+              href="/manage/certifications"
+              class="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:shadow-md transition group"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <div
+                  class="p-2 bg-green-100 rounded-lg group-hover:bg-green-200"
+                >
+                  <svg
+                    class="w-5 h-5 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-2xl font-bold text-gray-900"
+                  >{certifications.length}</span
+                >
+              </div>
+              <h4 class="text-sm font-semibold text-gray-900">
+                Certifications
+              </h4>
+              <p class="text-xs text-gray-500 mt-1">
+                Professional certificates
+              </p>
+            </a>
+
+            <a
+              href="/manage/skills"
+              class="p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:shadow-md transition group"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <div
+                  class="p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200"
+                >
+                  <svg
+                    class="w-5 h-5 text-yellow-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <span class="text-2xl font-bold text-gray-900"
+                  >{skills.length}</span
+                >
+              </div>
+              <h4 class="text-sm font-semibold text-gray-900">Skills</h4>
+              <p class="text-xs text-gray-500 mt-1">Technical & soft skills</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-sm text-gray-500">
+          <p>© 2026 Portfolio Dashboard. Semua hak dilindungi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+  ></path>
+</svg>
+
+<button class="p-1 text-gray-600 hover:bg-gray-100 rounded">
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+    ></path>
+  </svg>
+</button>
+
+<!-- Footer -->
+<div class="mt-8 text-center text-sm text-gray-500">
+  <p>© 2026 Portfolio Dashboard. Semua hak dilindungi.</p>
+</div>
