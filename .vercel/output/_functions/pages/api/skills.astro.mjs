@@ -1,4 +1,4 @@
-import { t as deleteSkill, v as getSkillById, w as getSkillsByType, x as getSkills, y as createSkill, z as updateSkill } from '../../chunks/db_Dwi_5F6a.mjs';
+import { t as deleteSkill, v as getSkillById, w as getSkillsByType, x as getSkills, y as createSkill, z as updateSkill } from '../../chunks/db_qKew7Mlk.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async ({ url }) => {

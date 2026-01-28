@@ -1,4 +1,4 @@
-import { d as deleteCertification, g as getCertificationById, a as getCertifications, c as createCertification, u as updateCertification } from '../../chunks/db_Dwi_5F6a.mjs';
+import { d as deleteCertification, g as getCertificationById, a as getCertifications, c as createCertification, u as updateCertification } from '../../chunks/db_qKew7Mlk.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async ({ url }) => {

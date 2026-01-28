@@ -1,4 +1,4 @@
-import { b as deleteEducation, e as getEducationById, f as getEducation, h as createEducation, i as updateEducation } from '../../chunks/db_Dwi_5F6a.mjs';
+import { b as deleteEducation, e as getEducationById, f as getEducation, h as createEducation, i as updateEducation } from '../../chunks/db_qKew7Mlk.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async ({ url }) => {

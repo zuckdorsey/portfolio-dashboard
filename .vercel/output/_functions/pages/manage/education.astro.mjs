@@ -1,7 +1,7 @@
 import { e as createComponent, k as renderComponent, l as renderScript, r as renderTemplate, m as maybeRenderHead, g as addAttribute } from '../../chunks/astro/server_BorZG8IO.mjs';
 import 'piccolore';
 import { $ as $$DashboardLayout } from '../../chunks/DashboardLayout_CHUFUN8H.mjs';
-import { f as getEducation } from '../../chunks/db_Dwi_5F6a.mjs';
+import { f as getEducation } from '../../chunks/db_qKew7Mlk.mjs';
 import { $ as $$FormModal } from '../../chunks/FormModal_CH1TdF5T.mjs';
 export { renderers } from '../../renderers.mjs';
 
