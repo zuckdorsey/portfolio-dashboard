@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+if (Astro.request.method === "GET") {
+    // Optionally check if already logged in and redirect
+    const authPin = Astro.cookies.get("auth_pin");
+    if (authPin && authPin.value === "123456") {
+       return Astro.redirect("/dashboard");
+    }
+}
+---
+
+<Layout title="Login Portfolio Manager">
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Portfolio Manager</h1>
+        <p class="text-gray-500 mt-2">Enter PIN to access dashboard</p>
+      </div>
+
+      <form class="space-y-6" id="loginForm">
+        <div>
+          <label for="pin" class="block text-sm font-medium text-gray-700 mb-2">
+            Security PIN
+          </label>
+          <input
+            type="password"
+            id="pin"
+            name="pin"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-center text-2xl tracking-[0.5em] transition"
+            placeholder="••••••"
+            maxlength="6"
+            required
+            pattern="[0-9]*"
+            inputmode="numeric"
+            autofocus
+          />
+        </div>
+
+        <div id="errorMessage" class="hidden p-3 bg-red-100 text-red-700 rounded-lg text-sm text-center">
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow transition duration-200 transform hover:scale-[1.02]"
+        >
+          Access Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('loginForm') as HTMLFormElement;
+  const errorDiv = document.getElementById('errorMessage') as HTMLElement;
+  const pinInput = document.getElementById('pin') as HTMLInputElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorDiv.classList.add('hidden');
+    
+    // Prevent default form submission and use fetch
+    const formData = new FormData(form);
+    const pin = formData.get('pin');
+
+    if (!pin) return;
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pin }),
+      });
+
+      if (response.ok) {
+        window.location.href = '/dashboard';
+      } else {
+        const data = await response.json();
+        errorDiv.textContent = data.error || 'Invalid PIN';
+        errorDiv.classList.remove('hidden');
+        pinInput.value = '';
+        pinInput.focus();
+        
+        // Shake animation
+        pinInput.classList.add('border-red-500', 'animate-pulse');
+        setTimeout(() => {
+             pinInput.classList.remove('border-red-500', 'animate-pulse');
+        }, 500);
+      }
+    } catch (err) {
+      errorDiv.textContent = 'An error occurred. Please try again.';
+      errorDiv.classList.remove('hidden');
+    }
+  });
+
+  // Auto-submit when 6 digits are entered
+  pinInput.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.value.length === 6) {
+          form.dispatchEvent(new Event('submit'));
+      }
+  });
+</script>
